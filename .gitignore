@@ -115,5 +115,3 @@ dmypy.json
 
 # ide extensions
 .vscode/
-
-.idea/
