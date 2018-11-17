@@ -1,0 +1,71 @@
+{% load staticfiles %}
+
+<html>
+
+  <head>
+    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+    <meta charset="utf-8">
+    <title></title>
+<h1>Review_page</h1>
+  </head>
+  <body>
+
+    <div class = "container">
+      <div class="jumbotron">
+
+    <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+
+             <form method="POST">
+              {{form.as_p}}
+              {% csrf_token %}
+
+            </form>
+
+          </div>
+        </ul>
+      </div>
+    </div>
+
+<div class="container">
+           <div>
+             <h1>Doctors</h1>
+               {% if doctor_dict %}
+           {% for x in doctor_dict %}
+           <h2>{{x.uid}}</h2>
+          </div>
+          <div style="float:right;width:20%">
+          <a class="btn" href="{% url 'final_app:review' %}">
+          <button class="btn" type="submit">Review</button>
+           </a>
+         </div>
+         {% endfor %}
+         {% endif %}
+<div>
+  <div>
+    <h1>Users</h1>
+  {% if user_dict %}
+  {% for x in user_dict %}
+
+  <h2>{{x.uid}}</h2>
+ </div>
+ <div style="float:right;width:20%">
+
+  </div>
+{% endfor %}
+{% endif %}
+
+</div>
+<!--
+         {%if review_dict %}
+         {% for x in review_dict %}
+           <div style="float:center;width:20%"><h2>{{x.rating}}</h2>
+           </div>
+           {% endfor %}
+           {% endif %}
+-->
+</div>
+</div>
+        </body>
+</html>
