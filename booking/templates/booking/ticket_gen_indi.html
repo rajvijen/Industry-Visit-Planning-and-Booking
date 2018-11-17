@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        h2 {font-family: Terminal Dosis; font-size: 40px; font-weight: 400; line-height: 44px;}
+        table, td {border: 1px double black}
+        table {border-collapse: collapse}
+        body{font-size: 28px;}
+    </style>
+</head>
+<body>
+    <h2>Hi , {{ user.name_person }}</h2>
+    <table align="center">
+        <tr>
+            <td>Industry Name</td>
+            <td>{{ user.industry_name }}</td>
+        </tr>
+        <tr>
+            <td>Date of Visit</td>
+            <td>{{ user.date_visit }}</td>
+        </tr>
+        <tr>
+            <td>Slot No</td>
+            <td>{{ user.slot_time }}</td>
+        </tr>
+        <tr>
+            <td>Number of People</td>
+            <td>{{ user.visiting_members }}</td>
+        </tr>
+        <tr>
+            <td>Code</td>
+            <td>{{ code }}</td>
+        </tr>
+    </table>
+</body>
+</html>
