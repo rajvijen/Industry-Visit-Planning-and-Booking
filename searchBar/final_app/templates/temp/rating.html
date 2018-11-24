@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <table>
+      <div>
+      {% if doc %}
+      {% for doc in doc %}
+        <tr>
+          <th>{{doc.firstname}}</th>
+        </tr>
+  {% endfor %}
+  {% endif %}
+</div>
+<div style="background-color:lightblue">
+        <tr>
+          {% if rating %}
+          {% for i in rating %}
+          <td>{{ i.rating__avg }}</td>
+        </tr>
+        {% endfor %}
+      {% endif %}
+    </div>
+    </table>
+  </body>
+</html>

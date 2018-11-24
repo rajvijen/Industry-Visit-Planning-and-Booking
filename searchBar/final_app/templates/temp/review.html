@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% load crispy_forms_tags %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>REVIEWS AND RATINGS</title>
+  </head>
+  <body>
+<div class = "container width-50" style="text-align:center" >
+
+  <form method="POST">
+    {% csrf_token %}
+    {{form|crispy}}
+  <input type="submit" class="btn btn-success pull-right">
+</form>
+</div>
+
+ </body>
+</html>

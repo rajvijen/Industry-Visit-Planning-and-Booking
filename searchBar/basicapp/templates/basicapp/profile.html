@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% extends 'searchBarApp/base.html'%}
+
+{% block body_block %}
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-3 ">
+		     <div class="list-group ">
+              <a href="{% url 'basicapp:profile' %}" class="list-group-item list-group-item-action">Profile</a>
+              <a href="#" class="list-group-item list-group-item-action">visited Industries</a>
+              <a href="#" class="list-group-item list-group-item-action">Booked industries to visit</a>
+              <a href="#" class="list-group-item list-group-item-action">Visit Later</a>
+              <a href="{% url 'basicapp:update' %}" class="list-group-item list-group-item-action">Update Profile</a>
+            </div>
+		</div>
+
+		<div class="col-md-9">
+{#		    <div class="card">#}
+                <div class="container">
+                     <div class="row">
+                         <div class="col-md-6 img">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvzOpl3-kqfNbPcA_u_qEZcSuvu5Je4Ce_FkTMMjxhB-J1wWin-Q"  alt="" class="img-rounded">
+                         </div>
+                         <div class="col-md-6 details">
+                             <table>
+                                 <tr>
+                                     <td style="padding: 5px"><h4><span style="color: #66c4ff">Name: </span></h4></td>
+                                     <td style="padding: 5px"><h4>{{ request.user.userprofileinfo.name }}</h4></td>
+                                 </tr>
+                                 <tr>
+                                     <td style="padding: 5px"><h4><span style="color: #66c4ff">Username: </span></h4></td>
+                                     <td style="padding: 5px"><h4>{{ request.user.username }}</h4></td>
+                                 </tr>
+                                 <tr>
+                                     <td style="padding: 5px"><h4><span style="color: #66c4ff">Email: </span></h4></td>
+                                     <td style="padding: 5px"><h4>{{ request.user.email }}</h4></td>
+                                 </tr>
+                                 <tr>
+                                     <td style="padding: 5px"><h4><span style="color: #66c4ff">Gender: </span></h4></td>
+                                     <td style="padding: 5px"><h4>{{ request.user.userprofileinfo.gender }}</h4></td>
+                                 </tr>
+                             </table>
+                         </div>
+                     </div>
+                </div>
+{#            </div>#}
+        </div>
+    </div>
+</div>
+
+
+    <br><br>
+    <br><br>
+
+{% endblock %}
+
+
+
+
+
+
+
+<!------ Include the above in your HEAD tag ---------->
+

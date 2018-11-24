@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% extends 'searchBarApp/base.html'%}
+
+{%block body_block%}
+
+<br><br><br><br><br><br><br><br>
+<br><br>
+
+<div>
+  <h1 style="text-align:center">
+  	IT Companies
+  </h1>
+</div>
+
+<div>
+  <h4 style="text-align:center">
+  	Check out IT Companies
+  </h4>
+</div>
+
+
+
+<br><br><br>
+<div class="container">
+<div class="row">
+{% for obj in objects5 %}
+<div class="col-sm-4">
+<div class="card" style="width:300px">
+    <img class="card-img-top" src="/media/{{obj.image}}" style="height:300px" alt="Card image" >
+    <div class="card-body">
+      <h4 class="card-title">{{obj.id_name}}</h4>
+      <a href="#" class="btn btn-primary">See Profile</a>
+    </div>
+</div>
+</div>
+{% endfor %}
+</div>
+</div>
+<br><br>
+{%endblock%}

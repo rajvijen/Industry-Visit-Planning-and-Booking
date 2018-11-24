@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+{% extends 'searchBarApp/base.html'%}
+
+{% load staticfiles %}
+{% block body_block %}
+
+<div class="home"><!--{% static "images/contact.jpg" %}-->
+		<div class="background_image" style="background-image:url({%static  "images/background_main.jpg " %} )"></div>
+
+<div class="home_container">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="home_content" style="padding-top:200px">
+						<div class="home_title" >Visitings made easy</div>
+						<div class="home_text" style="color:yellow">Explore the joy of visiting companies that you love </div>
+						<div class="button home_button" style="background-color:#3385ff;"><a href="{% url 'searchBarApp:read' %}"><span>read more</span><span>read whole</span></a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br><br><br>
+
+
+<!-- Departments -->
+
+<div class="departments">
+ <div class="container">
+	 <div class="row">
+		 <div class="col text-center">
+			 <div class="section_title">Our Departments</div>
+			 <div class="section_subtitle">to choose from</div>
+		 </div>
+	 </div>
+	 <div class="row dept_row">
+		 <div class="col">
+			 <div class="dept_slider_container_outer">
+				 <div class="dept_slider_container">
+
+					 <!-- Slider -->
+					 <div class="owl-carousel owl-theme dept_slider">
+
+						 <!-- Slide -->
+						 <div class="owl-item dept_item" >
+							 <div class="dept_image"><img src="{%static  "images/Manufacturing.jpg " %}" height="170" alt=""></div>
+							 <div class="dept_content"  >
+								 <div class="dept_title">Manufacturing</div>
+								 <div class="dept_link" ><a href="{% url 'searchBarApp:Manufacturing' %}">Read More</a></div>
+							 </div>
+						 </div>
+
+						 <!-- Slide -->
+						 <div class="owl-item dept_item">
+							 <div class="dept_image"><img src="{%static  "images/assembling.jpg " %}" alt=""></div>
+							 <div class="dept_content">
+								 <div class="dept_title">Assembling</div>
+								 <div class="dept_link"><a href="{% url 'searchBarApp:Assembling' %}">Read More</a></div>
+							 </div>
+						 </div>
+
+						 <!-- Slide -->
+						 <div class="owl-item dept_item">
+							 <div class="dept_image"><img src="{%static  "images/IT_Companies.jpg " %}" alt=""></div>
+							 <div class="dept_content">
+								 <div class="dept_title">IT Companies</div>
+								 <div class="dept_link"><a href="{% url 'searchBarApp:IT_Companies' %}">Read More</a></div>
+							 </div>
+						 </div>
+
+						 <!-- Slide -->
+						 <div class="owl-item dept_item">
+							 <div class="dept_image"><img src="{%static  "images/Automobiles.jpg " %}" alt=""></div>
+							 <div class="dept_content">
+								 <div class="dept_title">AutoMobiles</div>
+								 <div class="dept_link"><a href="{% url 'searchBarApp:Automobiles' %}" >Read More</a></div>
+							 </div>
+						 </div>
+
+					 </div>
+
+				 </div>
+
+				 <!-- Dept Slider Nav -->
+				 <div class="dept_slider_nav" style="background-color:#3385ff;"><i class="fa fa-chevron-right" aria-hidden="true"></i></div>
+
+			 </div>
+
+		 </div>
+	 </div>
+ </div>
+</div>
+
+<!-- Services -->
+
+<div class="services">
+	<div class="container">
+		<div class="row">
+			<div class="col text-center">
+				<div class="section_title">Our Services</div>
+				<div class="section_subtitle">to choose from</div>
+			</div>
+		</div>
+		<div class="row icon_boxes_row">
+
+			<!-- Icon Box -->
+			<div class="col-xl-4 col-lg-6">
+				<div class="icon_box">
+					<div class="icon_box_title_container d-flex flex-row align-items-center justify-content-start">
+						 <div class="icon_box_icon"><img src="https://img.freepik.com/free-icon/bus-side-view_318-47219.jpg?size=338c&ext=jpg" alt=""></div>
+						<div class="icon_box_title">Travel</div>
+					</div>
+					<div class="icon_box_text">We can provide bus services from railway station to industry .To avail this,Just pay money and make your tour a memorable one.</div>
+				</div>
+			</div>
+
+			<!-- Icon Box -->
+			<div class="col-xl-4 col-lg-6">
+				<div class="icon_box">
+					<div class="icon_box_title_container d-flex flex-row align-items-center justify-content-start">
+						<div class="icon_box_icon"><img src="https://img.freepik.com/free-icon/bus-side-view_318-47219.jpg?size=338c&ext=jpg" alt=""></div>
+						<div class="icon_box_title">Travel</div>
+					</div>
+					<div class="icon_box_text">We can provide bus services from railway station to industry .To avail this,Just pay money and make your tour a memorable one.</div>
+				</div>
+			</div>
+
+			<!-- Icon Box -->
+			<div class="col-xl-4 col-lg-6">
+				<div class="icon_box">
+					<div class="icon_box_title_container d-flex flex-row align-items-center justify-content-start">
+						<div class="icon_box_icon"><img src="https://img.freepik.com/free-icon/bus-side-view_318-47219.jpg?size=338c&ext=jpg" alt=""></div>
+						<div class="icon_box_title">Travel</div>
+					</div>
+					<div class="icon_box_text">We can provide bus services from railway station to industry .To avail this,Just pay money and make your tour a memorable one.</div>
+				</div>
+			</div>
+
+			<!-- Icon Box -->
+			<div class="col-xl-4 col-lg-6">
+				<div class="icon_box">
+					<div class="icon_box_title_container d-flex flex-row align-items-center justify-content-start">
+						<div class="icon_box_icon"><img src="https://img.freepik.com/free-icon/bus-side-view_318-47219.jpg?size=338c&ext=jpg" alt=""></div>
+						<div class="icon_box_title">Travel</div>
+					</div>
+					<div class="icon_box_text">We can provide bus services from railway station to industry .To avail this,Just pay money and make your tour a memorable one.</div>
+				</div>
+			</div>
+
+			<!-- Icon Box -->
+			<div class="col-xl-4 col-lg-6">
+				<div class="icon_box">
+					<div class="icon_box_title_container d-flex flex-row align-items-center justify-content-start">
+						<div class="icon_box_icon"><img src="https://img.freepik.com/free-icon/bus-side-view_318-47219.jpg?size=338c&ext=jpg" alt=""></div>
+						<div class="icon_box_title">Travel</div>
+					</div>
+					<div class="icon_box_text">We can provide bus services from railway station to industry .To avail this,Just pay money and make your tour a memorable one.</div>
+				</div>
+			</div>
+
+			<!-- Icon Box -->
+			<div class="col-xl-4 col-lg-6">
+				<div class="icon_box">
+					<div class="icon_box_title_container d-flex flex-row align-items-center justify-content-start">
+						<div class="icon_box_icon"><img src="https://img.freepik.com/free-icon/bus-side-view_318-47219.jpg?size=338c&ext=jpg" alt=""></div>
+						<div class="icon_box_title">Travel</div>
+					</div>
+					<div class="icon_box_text">We can provide bus services from railway station to industry .To avail this,Just pay money and make your tour a memorable one.</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col">
+				<div class="button services_button ml-auto mr-auto" style="background-color:#3385ff;"><a href="#"><span>read more</span><span>read more</span></a></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- FAQ & News -->
+
+<div class="stuff">
+	<div class="container">
+		<div class="row">
+
+			<!-- FAQ -->
+			<div class="col-lg-7">
+				<div class="faq">
+					<div class="faq_title">Faq & Stuff</div>
+					<div class="faq_subtitle">read all about it</div>
+					<div class="elements_accordions">
+						<div class="accordions" >
+
+							<div class="accordion_container" >
+								<div class="accordion d-flex flex-row align-items-center active" ><div>What is  Visit <span>+</span></div></div>
+								<div class="accordion_panel" >
+									<div>
+										<p>Visit+ is an web service founded by group of students .This makes your visit to any available company/industry easy .</p>
+									</div>
+								</div>
+							</div>
+
+							<div class="accordion_container">
+								<div class="accordion d-flex flex-row align-items-center"><div>How to avail the service of visit+</div></div>
+								<div class="accordion_panel">
+									<div>
+										<p>First of all,sign up for visit+ with email verified and enjoy the services of visit+</p>
+									</div>
+								</div>
+							</div>
+
+							<div class="accordion_container">
+								<div class="accordion d-flex flex-row align-items-center"><div>Why is it important to have practical knowledge</div></div>
+								<div class="accordion_panel">
+									<div>
+										<p>Very important skill to have in this competitive world</p>
+									</div>
+								</div>
+							</div>
+
+							<div class="accordion_container">
+								<div class="accordion d-flex flex-row align-items-center"><div>How to avail the service of visit+</div></div>
+								<div class="accordion_panel">
+									<div>
+										<p>First of all,sign up for visit+ with email verified and enjoy the services of visit+</p>
+									</div>
+								</div>
+							</div>
+							<div class="button home_button" style="background-color:#3385ff;"><a href="{% url 'searchBarApp:faq' %}"><span>read more</span><span>read whole</span></a></div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Latest News -->
+			<div class="col-lg-5">
+				<div class="news" >
+					<div class="news_title" style="padding-left:100px">Blog</div>
+					<div class="news_subtitle" style="padding-left:100px">Read all about it</div>
+					<div class="news_container">
+
+						<!-- Latest News Post -->
+						<div class="latest d-flex flex-row align-items-start justify-content-start">
+							<div><div class="latest_image"><img src="images/latest_1.jpg" alt=""></div></div>
+							<div class="latest_content">
+								<div class="latest_title"><a href="news.html">A simple blog post</a></div>
+								<div class="latest_info">
+									<ul class="d-flex flex-row align-items-start justify-content-start">
+										<li><a href="#">by Sumanth</a></li>
+										<li><a href="#">November 1, 2018</a></li>
+									</ul>
+								</div>
+								<div class="latest_comments"><a href="#" style="color:#3385ff;">7 Comments</a></div>
+							</div>
+						</div>
+
+						<!-- Latest News Post -->
+						<div class="latest d-flex flex-row align-items-start justify-content-start">
+							<div><div class="latest_image"><img src="images/latest_2.jpg" alt=""></div></div>
+							<div class="latest_content">
+								<div class="latest_title"><a href="news.html">Great Experience to visit kobelcoo</a></div>
+								<div class="latest_info">
+									<ul class="d-flex flex-row align-items-start justify-content-start">
+										<li><a href="#">by Hemanth</a></li>
+										<li><a href="#">November 1, 2018</a></li>
+									</ul>
+								</div>
+								<div class="latest_comments"><a href="#" style="color:#3385ff;">5 Comments</a></div>
+							</div>
+						</div>
+
+						<!-- Latest News Post -->
+						<div class="latest d-flex flex-row align-items-start justify-content-start">
+							<div><div class="latest_image"><img src="images/latest_3.jpg" alt=""></div></div>
+							<div class="latest_content">
+								<div class="latest_title"><a href="news.html">How to make a industrial tour successfull??</a></div>
+								<div class="latest_info">
+									<ul class="d-flex flex-row align-items-start justify-content-start">
+										<li><a href="#">by Pranay</a></li>
+										<li><a href="#">November 1, 2018</a></li>
+									</ul>
+								</div>
+								<div class="latest_comments" ><a href="#" style="color:#3385ff;">2 Comments</a></div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+</div>
+</div>
+
+
+
+{% endblock %}
