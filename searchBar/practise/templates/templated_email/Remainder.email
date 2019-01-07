@@ -1,0 +1,5 @@
+{% block html %}
+Dear {{ u_name }},<br>
+        You have a visit to the industry {{ u_vist }} is on {{ u_date }} for slot at {{ u_slottime }}.
+        This is a gentle remainder.
+{% endblock %}

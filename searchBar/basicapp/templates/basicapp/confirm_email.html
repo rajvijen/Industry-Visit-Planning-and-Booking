@@ -1,5 +1,32 @@
-<html>
-<body>
-<h1>Please go and confirm your email</h1>
-</body>
-</html>
+<!DOCTYPE html>
+{% extends 'searchBarApp/base.html' %}
+
+{% load staticfiles %}
+
+{% block body_block %}
+<br><br><br><br><br><br><br><br>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+      $(function(){
+          var time = 5;
+
+          function redirect(){
+            setTimeout(redirect,1000);
+            $(".timer").html(time)
+            if(time == 0)
+            {
+                window.location.href = 'http://127.0.0.1:8000'
+            }
+            time--;
+          }
+          redirect()
+        });
+      </script>
+    <center><img src="{% static "images/7YUz.gif" %}" width="80px" height = "80px"></center>
+
+   <center>  <h1>Confirmation to your email has been sent.
+    Please check your mail to confirm it.
+      You will be redirected to our Homepage in <span class = "timer">0</span> seconds</h1></center><br><br><br>
+
+      <br><br><br><br>
+{% endblock body_block %}

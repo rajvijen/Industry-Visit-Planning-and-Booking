@@ -2,8 +2,11 @@
 {% load staticfiles %}
 <html>
 	<head>
+		<div> 
+			<a href="http://127.0.0.1:8000/">Go back to Home</a>
+		</div>
 		<meta charset="utf-8">
-		<title>RegistrationForm_v1 by Colorlib</title>
+		<title>Registration Form</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- Bootstrap link -->
@@ -18,14 +21,14 @@
 
 	<body>
 
-		<div class="wrapper" style="background-color:#7aecff;">
+		<div class="wrapper" style="background-color:#7f97e4;">
 			<div class="inner">
 				<div class="image-holder">
 					<img src="{% static 'registration/images/registration_user.jpg' %}" alt="Registration" height="500px">
 				</div>
 				<form method="POST">
                     {% csrf_token %}
-					<h3>Registration Form</h3>
+					<h3>Register Here</h3>
 
                         {% for field in user_form %}
                             {% for error in field.errors %}

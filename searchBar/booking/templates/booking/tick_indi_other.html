@@ -1,0 +1,47 @@
+{% extends "./ticket_gen_indi.html" %}
+{% block indi_book %}
+    <header width="100%" height="10px" style="border-left: 10px solid blue;background-color: lightgrey;">
+        <h1 style="padding-left: 20px; text-align: left;">VISIT<span style="color:#3385ff;">+</span></h1>
+        <p style="padding-left: 20px; text-align: left;">Visitings made Easy</p>
+    </header>
+    <div style='width:100%; align-content: center'>
+        <div>
+            <h2 align="center">Hi , {{ user.name_person }}</h2>
+            <table align="center">
+                <tr>
+                    <td>Industry Name</td>
+                    <td><b>{{ user.industry_name }}</b></td>
+                </tr>
+                <tr>
+                    <td>Date of Visit</td>
+                    <td><b>{{ user.date_visit }}</b></td>
+                </tr>
+                <tr>
+                    <td>Slot No</td>
+                    <td><b>{{ user.slot_time }}</b></td>
+                </tr>
+                <tr>
+                    <td>Number of People</td>
+                    <td><b>{{ user.visiting_members }}</b></td>
+                </tr>
+                <tr>
+                    <td>Code</td>
+                    <td><b>{{ code }}</b></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <hr>
+    <footer style="text-align: center">
+        Copyright &copy 2018 VISIT+<br>
+        All rights reserved<br>
+        You are listed as a Community partner with VISIT+<br><br>
+        <b>Our Address:</b><br>
+        Indian Institute of Information Technology, Sri City, Chittoor<br>
+        630 Gnan Marg, Sri City, Satyavedu Mandal<br>
+        Chittoor District - 517 646, Andhra Pradesh, India<br><br>
+        Please see our FAQ's for your further questions<br>
+        Chat with us in working hours in working days<br>
+        Please let us know your feedback<br>
+    </footer>
+{% endblock %}

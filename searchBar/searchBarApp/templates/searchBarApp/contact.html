@@ -1,10 +1,71 @@
 <!DOCTYPE html>
 {% extends 'searchBarApp/base.html'%}
 
+
+
+{% block active %}<li ><a  class="cool-link" href="{% url 'searchBarApp:searching' %}">  Home </a></li> {% endblock active %}
+{%block contact_active%}<li class="active" ><a class="cool-link" href="{% url 'searchBarApp:contact' %}">Contact</a></li>{%endblock contact_active%}
+
 {%block body_block%}
 <br><br><br><br><br><br><br>
 <h1 style="text-align:center">Contact us</h1>
+<h2>Members</h2>
+<table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Pranay</td>
+            <td>Chintala</td>
+            <td>pranay.c17@iiits.in</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Hemanth</td>
+            <td>Reddy</td>
+            <td>hemanth.m17@iiits.in</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Harsha</td>
+            <td>Katta</td>
+            <td>kvenkataharsha@gmail.com</td>
+          </tr>
+          <tr>
+                <th scope="row">4</th>
+                <td>Lushannk</td>
+                <td>Kancharla</td>
+                <td>Lushannk@gmail.com</td>
+              </tr>
+            <tr>
+                    <th scope="row">5</th>
+                    <td>Sumanth</td>
+                    <td>Minupala</td>
+                    <td>sumanth.m17@iiits.in</td>
+                  </tr>
+                  <tr>
+                        <th scope="row">6</th>
+                        <td>Vijendra</td>
+                        <td>Kumar</td>
+                        <td>vijendrakumar.s17@iiits.in</td>
+                      </tr>
+        </tbody>
+      </table>
 
+
+      <h2>Address</h2>
+      <address>
+            Visit us at:BOYS HOSTEL,GYAN MARG CIRCLE<br>
+            iiits.ac.in<br>
+            SRI CITY
+            </address>
 <br><br><br><br>
 
 

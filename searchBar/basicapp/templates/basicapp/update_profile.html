@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% extends 'searchBarApp/base.html'%}
-
+{% load crispy_forms_tags %}
 {% block body_block %}
 <br><br><br><br><br><br><br><br><br><br><br><br>
 <div class="container-fluid">
@@ -8,36 +8,35 @@
 		<div class="col-md-3 ">
 		     <div class="list-group ">
               <a href="{% url 'basicapp:profile' %}" class="list-group-item list-group-item-action">Profile</a>
-              <a href="#" class="list-group-item list-group-item-action">visited Industries</a>
-              <a href="#" class="list-group-item list-group-item-action">Booked industries to visit</a>
-              <a href="#" class="list-group-item list-group-item-action">Visit Later</a>
+              <a href="{% url 'basicapp:visited_industries' %}" class="list-group-item list-group-item-action">visited Industries</a>
+              <a href="{% url 'basicapp:booked_to_visit' %}" class="list-group-item list-group-item-action">Booked industries to visit</a>
+              <a href="{% url 'basicapp:add_to_visit_later' %}" class="list-group-item list-group-item-action">Visit Later</a>
               <a href="{% url 'basicapp:update' %}" class="list-group-item list-group-item-action">Update Profile</a>
             </div>
 		</div>
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<div class="content-section">
+			<div class="media">
+				<img class="rounded-circle account-img" src="{{ user.userprofileinfo.image.url }}">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				<div class="media-body">
+					<h2 class="account-heading"style="font-size:40px">{{ user.username }}</h2>
+					<p class="text-secondary" style="font-size:25px">{{ user.email }}</p>
+				</div>
+			</div>
+			<br><br>
+			<form method="POST" enctype="multipart/form-data">
+					{% csrf_token %}
+					<fieldset class="form-group">
+							<legend class="border-bottom mb-4">Profile Info</legend>
+							{{ user_form|crispy }}
+							{{ profile_form|crispy }}
+					</fieldset>
+					<div class="form-group">
+							<button class="btn btn-outline-info" type="submit">Update</button>
+					</div>
+			</form>
+		</div>
 
-		<div class="col-md-9">
-		    <div class="card">
-                 <div class="card-body">
-		            <div class="row">
-		                <div class="col-lg-auto">
-                            <h2 style="text-align: center">Update Profile Info</h2><br>
-                            <form method="POST">
-                                {% csrf_token %}
-                                <h4>Name:</h4>
-                                {{ profile_form.name}}<br><br>
-                                <h4>Username:</h4>
-                                {{ user_form.username }}<br><br>
-                                <h4>Email:</h4>
-                                {{ user_form.email }}<br><br>
-                                <h4>Gender:</h4>
-                                {{ profile_form.gender}}<br><br>
-                                <input type="submit" value="update">
-                            </form>
-		                </div>
-                    </div>
-                 </div>
-            </div>
-        </div>
     </div>
 </div>
 
@@ -50,9 +49,3 @@
 
 
 {% endblock %}
-
-
-
-
-
-

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        #right{
+            float:right;
+        }
+        body{
+            font-size: medium;
+        }
+    </style>
+    <script>
+        var t = 0;
+        function return_tick(){
+            var x = document.getElementById("ret");
+
+        }
+    </script>
+</head>
+<body>
+    <center>
+    <div class="container" style="width:30%; text-align: left;">
+        <h2>Choose the places now</h2>
+        <form action="{% url 'booking:book_air_orga' %}" METHOD="post">
+            {% csrf_token %}
+            <div class="form-group"><input type="radio" name="Type" value="One_Way" checked>One Way
+            <p id="right"><input type="radio" name="Type" value="Round_Trip" {% comment %}onclick="return_tick()"{% endcomment %}>Round Trip</p></div>
+            <div class="form-group">
+                <label>From Destination</label>
+                <input type="text" class="form-control" name="from_des">
+            </div>
+            <div class="form-group">
+                <label>To Destination</label>
+                <input type="text" class="form-control" name="to_des">
+            </div>
+            <table style="width:100%">
+                <td><div class="form-group" style="width: 81%">
+                    <label>Depart On</label>
+                    <input type="date" class="form-control" name="depart_on">
+                </div></td>
+                <td><div class="form-group" style="width: 81%;" id="right, ret">
+                    <label>Return On</label>
+                    <input type="date" class="form-control" name="return_on">
+                </div></td>
+            </table>
+            <table style="width:100%">
+                <td style="padding: 10px"><div class="form-group">
+                    <label>Adults</label>
+                    <input type="number" class="form-control" name="adults">
+                </div></td>
+                <td style="padding: 10px"><div class="form-group">
+                    <label>Children</label>
+                    <input type="number" class="form-control" name="children">
+                </div></td>
+                <td style="padding: 10px"><div class="form-group">
+                    <label>Infants</label>
+                    <input type="number" class="form-control" name="infants">
+                </div></td>
+            </table>
+            <input type="submit" value="Check Availability" class="btn btn-success left">
+        </form>
+    </div>
+</center>
+</body>
+</html>

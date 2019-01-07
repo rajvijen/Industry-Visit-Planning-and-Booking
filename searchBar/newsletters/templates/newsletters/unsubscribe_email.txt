@@ -1,0 +1,1 @@
+Sorry to see you go let us know if there is an issue with our service.To Subscribe again,Go To http://127.0.0.1:8000/newsletter/sign_up/

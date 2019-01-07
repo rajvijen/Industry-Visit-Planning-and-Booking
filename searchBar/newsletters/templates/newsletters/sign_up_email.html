@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Subscription</title>
+  </head>
+  <body>
+    <h2>Succesfully Subscribed </h2>
+    <p>Thank u for joining us</p>
+    <img src="https://us.123rf.com/450wm/abluecup/abluecup1507/abluecup150700587/42544017-3d-people-sitting-on-a-text-of-thanks-3d-image-isolated-white-background-.jpg?ver=6" alt="Sorry,Not Found">
+    <br><br><br>{{count}}
+    {% for obj in NewsletterUser2%}
+     {{obj.id}}
+     {{count}}
+    {%endfor%}
+    <p>To UnSubscribe Go to this link :<a href="http://127.0.0.1:8000/newsletter/unsubscribe/{{count}}">Unsubscribe</a>   </p>
+  </body>
+</html>
+<!--
+<a href="{% url "newsletters:newsletter_unsubscribe" %}">Unsubscribe</a> -->

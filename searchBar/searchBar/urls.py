@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url,include
+from django.urls import path
 from django.contrib import admin
 from basicapp import views
 from searchBarApp import views as search_views
@@ -28,11 +29,10 @@ from django.views.static import serve
 urlpatterns = [
     url(r'^$',search_views.index,name="index"),
     url(r'^admin/', admin.site.urls),
+    url(r'^newsletter/',include('newsletters.urls')),
     url(r'^search/',include('searchBarApp.urls')),
     url(r'^basicapp/',include('basicapp.urls')),
     url(r'^booking/', include('booking.urls')),
-    url(r'^review/', include('final_app.urls')),
-    # url(r'^chat/',include('chat.urls')),
     url(r'^logout/$',views.user_logout,name="user_logout"),
     url(r'^special/$',views.special,name="special"),
 
@@ -41,6 +41,11 @@ urlpatterns = [
     url(r'^reset-password/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         auth_views.PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
     url(r'reset/done/$', auth_views.PasswordResetCompleteView.as_view(), name="password_reset_complete"),
+    url(r'^crontab/',include('practise.urls')),
+    url(r'^blog/',include('blog.urls')),
+    url(r'^chat/',include('chat.urls')),
+    path('ckeditor/',include('ckeditor_uploader.urls')),
+
 ]
 
 if settings.DEBUG:

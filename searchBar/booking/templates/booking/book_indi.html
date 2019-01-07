@@ -5,17 +5,17 @@
 <head>
     <style>
         body, html {
-            height: 500px;
+            height:500px;
         }
         .p-lax{
             background-image:url('{{ static }}/../static/images/booking_back2.jpg');
+            height: 500px;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            height: 500px;
         }
     </style>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static "css/style.css" %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
 
@@ -30,10 +30,11 @@
     </script>
 </head>
 <body>
-    <div class="p-lax"></div>
-    <div class="container width-50" style="width:40%">
+<div class="p-lax"></div>
+<center>
+<div class="container width-50" style="width:40%; text-align: left;">
     <b><h2> Please Fill out the form for Booking </h2></b><br>
-    <form action="{% url 'booking:con_indi' %}" method="POST" >
+    <form action="{% url 'booking:con_indi' ind_id %}" method="POST" >
         {% csrf_token %}
 
         {% for field in form %}
@@ -45,8 +46,16 @@
         {% endfor %}
 
         <h4>{{ form|crispy }}</h4><br>
+        <h5><div class="form-group">
+            <h4><label >Mode of transport</label></h4>
+            <input type="radio" name="transport" value="bus" checked>Bus<br>
+            <input type="radio" name="transport" value="train">Train<br>
+            <input type="radio" name="transport" value="plane">Airplane<br>
+            <input type="radio" name="transport" value="none">Feel free to choose this if you don't need any
+        </div></h5><br>
         <input type="submit" value="Book Now" class="btn btn-success pull-right">
     </form>
     </div>
+</center>
 </body>
 </html>

@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect #Also importing redirect
+from django.shortcuts import render,redirect,get_object_or_404 #Also importing redirect
 from basicapp.forms import UserForm,UserProfileInfoForms,UpdateProfile,UpdateUser
 
 
@@ -15,7 +15,29 @@ from django.template.loader import render_to_string
 from basicapp.tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
+import datetime
+
+from booking.models import BookingListIndi
+
 #End of models for email conformation
+
+
+#Models used for stripe payment
+import stripe
+from django.conf import settings
+from django.views.generic.base import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+#End of models for stripe
+
+
+#Used for add to visit later
+from searchBarApp.models import AddToVisitLater
+#End of add to visit later
+
+
+#setting API key for stripe
+stripe.api_key = settings.STRIPE_SECRET_KEY # new
+
 
 
 def index(request):
@@ -106,10 +128,6 @@ def activate(request,uidb64,token): #creating a function for activating emailID
 
 
 
-
-
-
-
 def user_login(request):
     if request.method == "POST":
         username=request.POST.get("username") #username is the name of the "input field" and we are using "get" method because it is just a simple form
@@ -126,7 +144,7 @@ def user_login(request):
         else:
             print("Someone tried to login and failed")
             print("username:{} and password:{}".format(username,password))
-            return HttpResponse("INVALID LOGIN DETAILS SUPPLIED")
+            return render(request,"basicapp/invalid.html")
     else:
         return render(request,"basicapp/login.html")
 
@@ -144,7 +162,7 @@ def profile(request):
 def update(request):
     if request.method == 'POST':
         user_form=UpdateUser(request.POST,instance=request.user)
-        user_profile=UpdateProfile(request.POST,instance=request.user.userprofileinfo)
+        user_profile=UpdateProfile(request.POST,request.FILES,instance=request.user.userprofileinfo)
 
         if user_form.is_valid() and user_profile.is_valid():
             user_form.save()
@@ -154,3 +172,100 @@ def update(request):
         user_form=UpdateUser(instance=request.user)
         profile_form=UpdateProfile(instance=request.user.userprofileinfo)
         return render(request,"basicapp/update_profile.html",{'user_form':user_form,'profile_form':profile_form})
+
+@login_required
+def visited_industries(request):
+    visited=BookingListIndi.objects.filter(user1=request.user)
+    date_now=datetime.datetime.now().date() 
+    print(visited)
+    print(date_now)
+    return render(request,'basicapp/visited.html',{'visited':visited,'datetime_now':date_now})
+
+@login_required
+def booked_to_visit(request):
+    booked_industries=BookingListIndi.objects.filter(user1=request.user)
+    date_now = datetime.datetime.now().date()
+    print(date_now)
+    date = str(date_now)
+    date_list = date.split('-')
+    print(date_list)
+    for d in booked_industries:
+        temp = str(d.date_visit)
+        temp1 = temp.split('-')
+        if(int(temp1[0]) - int(date_list[0]) < 1):
+            if(int(temp1[1]) - int(date_list[1]) == 0):
+                if((int(temp1[2]) - int(date_list[2]) <= 5)):
+                    d.left_days_bool = False
+            elif(int(temp1[1]) - int(date_list[1]) == 1):
+                if ((int(temp1[2]) - int(date_list[2]) == 25)):
+                    d.left_days_bool = False
+    return render(request,'basicapp/booked_to_visit.html',{'booked_industries':booked_industries,'date_now':date_now,})
+
+@login_required
+def cancel_ticket(request,industry_id):
+
+    if request.method=="POST":
+        industry_to_delete=get_object_or_404(BookingListIndi,id=industry_id)#BookingListIndi.objects.get(id=industry_id)
+        industry_to_delete.delete()
+        print(industry_id)
+        return redirect('basicapp:booked_to_visit')
+
+    return render(request,'basicapp/booked_to_visit.html')
+
+
+class booking_charge(LoginRequiredMixin,TemplateView):
+    template_name = 'basicapp/booking_charge.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['key'] = settings.STRIPE_PUBLISHABLE_KEY
+        print(kwargs)
+        context['industry_id']=kwargs['ind_id']
+        return context
+
+
+@login_required
+def charge1(request,ind_id):
+    if request.method == 'POST':
+        charge=stripe.Charge.create(
+            amount=1000,
+            currency='usd',
+            description='Booking charge',
+            source=request.POST['stripeToken'],
+        )
+
+        return redirect(reverse('booking:con_indi',kwargs={"ind_id":ind_id}))
+    else:
+        return render(request,'basicapp/booking_charge.html',{"ind_id":ind_id})
+
+
+@login_required
+def charge2(request,ind_id):
+    if request.method == 'POST':
+        charge=stripe.Charge.create(
+            amount=3000,
+            currency='usd',
+            description='Booking charge',
+            source=request.POST['stripeToken'],
+        )
+
+        return redirect(reverse('booking:con_orga',kwargs={"ind_id":ind_id}))
+    else:
+        return render(request,'basicapp/booking_charge.html',{"ind_id":ind_id})
+
+
+@login_required
+def add_to_visit_later(request):
+    add_to_visit_later=AddToVisitLater.objects.filter(user_id=request.user)
+    return render(request,'basicapp/add_to_visit_later.html',{'add_to_visit_later':add_to_visit_later})
+
+
+@login_required
+def cancel_ticket2(request,industry_id):
+
+    if request.method=="POST":
+        industry_to_delete=get_object_or_404(AddToVisitLater,id=industry_id)#BookingListIndi.objects.get(id=industry_id)
+        industry_to_delete.delete()
+        return redirect('basicapp:add_to_visit_later')
+
+    return render(request,'basicapp/add_to_visit_later.html')

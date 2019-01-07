@@ -2,20 +2,12 @@
 {% load staticfiles %}
 <html lang="en">
 <head>
-<title>Home </title>
+<title> {% block title %}  Home {% endblock title %} </title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Industial Visit project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{% static "styles/bootstrap4/bootstrap.min.css"%}">
 <link href="{% static "plugins/font-awesome-4.7.0/css/font-awesome.min.css"%}" rel="stylesheet" type="text/css">
@@ -24,193 +16,120 @@
 <link rel="stylesheet" type="text/css" href="{% static "plugins/OwlCarousel2-2.2.1/animate.css"%}">
 <link rel="stylesheet" type="text/css" href="{% static "styles/main_styles.css"%}">
 <link rel="stylesheet" type="text/css" href="{% static "styles/responsive.css"%}">
+<link rel="stylesheet" type="text/css" href="{% static "styles/base.css"%}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{% static "styles/start.css" %}">
 
-{#For Profile page   #}
-{#    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">#}
-{#    <link rel="stylesheet" href="{% static 'profile/profile.css' %}">#}
-{#    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>#}
-{#    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>#}
-{#End link for profile page    #}
-    <style >
+<style media="screen">
+	@import url('https://fonts.googleapis.com/css?family=Tajawal');
+	@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
-	#myBtn2 {
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  right: 30px;
-  z-index: 99;
-  font-size: 18px;
-  border: none;
-  outline: none;
-  background-color: red;
-  color: white;
-  cursor: pointer;
-  padding: 15px;
-  border-radius: 4px;
-}
-
-#myBtn2:hover {
-  background-color: #555;
-}
-
-
-		* {
-		box-sizing: border-box;
-		}
-
-
-		.autocomplete {
-		/*the container must be positioned relative:*/
-		position: relative;
-		display: inline-block;
-		}
-
-		input {
-		border: 1px solid transparent;
-		background-color: #f1f1f1;
-		padding: 10px;
-		font-size: 16px;
-		}
-
-		input[type=text] {
-		background-color: #f1f1f1;
-		width: 100%;
-		}
-
-		input[type=submit] {
-		background-color: DodgerBlue;
-		color: #fff;
-		cursor: pointer;
-		}
-
-		.autocomplete-items {
-		position: absolute;
-		border: 1px solid #d4d4d4;
-		border-bottom: none;
-		border-top: none;
-		z-index: 99;
-		/*position the autocomplete items to be the same width as the container:*/
-		top: 100%;
-		left: 0;
-		right: 0;
-		}
-
-		.autocomplete-items div {
-		padding: 10px;
-		cursor: pointer;
+	#subscribeModal .modal-content{
+	overflow:hidden;
+	}
+	a.h2{
+		color:#007b5e;
+		margin-bottom:0;
+		text-decoration:none;
+	}
+	#subscribeModal .form-control {
+		height: 56px;
+		border-top-left-radius: 30px;
+		border-bottom-left-radius: 30px;
+	padding-left:30px;
+	}
+	#subscribeModal .btn {
+		border-top-right-radius: 30px;
+		border-bottom-right-radius: 30px;
+	padding-right:20px;
+	background:#007b5e;
+	border-color:#007b5e;
+	}
+	#subscribeModal .form-control:focus {
+		color: #495057;
 		background-color: #fff;
-		border-bottom: 1px solid #d4d4d4;
-		}
+		border-color: #007b5e;
+		outline: 0;
+		box-shadow: none;
+	}
+	#subscribeModal .top-strip{
+	height: 155px;
+		background: #007b5e;
+		transform: rotate(141deg);
+		margin-top: -94px;
+		margin-right: 190px;
+		margin-left: -130px;
+		border-bottom: 65px solid #4CAF50;
+		border-top: 10px solid #4caf50;
+	}
+	#subscribeModal .bottom-strip{
+	height: 155px;
+		background: #007b5e;
+		transform: rotate(112deg);
+		margin-top: -110px;
+		margin-right: -215px;
+		margin-left: 300px;
+		border-bottom: 65px solid #4CAF50;
+		border-top: 10px solid #4caf50;
+	}
 
-		.autocomplete-items div:hover {
-		/*when hovering an item:*/
-		background-color: #e9e9e9;
-		}
+	/**************************/
+	/****** modal-lg stips *********/
+	/**************************/
+	#subscribeModal .modal-lg .top-strip {
+		height: 155px;
+		background: #007b5e;
+		transform: rotate(141deg);
+		margin-top: -106px;
+		margin-right: 457px;
+		margin-left: -130px;
+		border-bottom: 65px solid #4CAF50;
+		border-top: 10px solid #4caf50;
+	}
+	#subscribeModal .modal-lg .bottom-strip {
+		height: 155px;
+		background: #007b5e;
+		transform: rotate(135deg);
+		margin-top: -115px;
+		margin-right: -339px;
+		margin-left: 421px;
+		border-bottom: 65px solid #4CAF50;
+		border-top: 10px solid #4caf50;
+	}
 
-		.autocomplete-active {
-		/*when navigating through the items using the arrow keys:*/
-		background-color: DodgerBlue !important;
-		color: #ffffff;
-		}
+	/****** extra *******/
+	#Reloadpage{
+		cursor:pointer;
+	}
 
-		#query {
-    border-radius: 5px;
-    background: white;
-    padding: 20px;
-    width: 140px;
-    height: 15px;
-}
-
-    /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        /* height: 100%; */
-        height: 100%;
-        margin: 0;
-        padding: 0;
-
-      }
-      /* Optional: Makes the sample page fill the window. */
-      {#html, body {#}
-      {#  height: 100%;#}
-      {#  margin: 0;#}
-      {#  padding: 0;#}
-      {#}#}
-      #description {
-        font-family: Roboto;
-        font-size: 15px;
-        font-weight: 300;
-      }
-
-      #infowindow-content .title {
-        font-weight: bold;
-      }
-
-      #infowindow-content {
-        display: none;
-      }
-
-      #map #infowindow-content {
-        display: inline;
-      }
-
-      .pac-card {
-        margin: 10px 10px 0 0;
-        border-radius: 2px 0 0 2px;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        outline: none;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-        background-color: #fff;
-        font-family: Roboto;
-      }
-
-      #pac-container {
-        padding-bottom: 12px;
-        margin-right: 12px;
-      }
-
-      .pac-controls {
-        display: inline-block;
-        padding: 5px 11px;
-      }
-
-      .pac-controls label {
-        font-family: Roboto;
-        font-size: 13px;
-        font-weight: 300;
-      }
-
-      #pac-input {
-        background-color: #fff;
-        font-family: Roboto;
-        font-size: 15px;
-        font-weight: 300;
-        margin-left: 12px;
-        padding: 0 11px 0 13px;
-        text-overflow: ellipsis;
-        width: 400px;
-      }
-
-      #pac-input:focus {
-        border-color: #4d90fe;
-      }
-
-      #title {
-        color: #fff;
-        background-color: #4d90fe;
-        font-size: 25px;
-        font-weight: 500;
-        padding: 6px 12px;
-      }
-
-
-		</style>
+	</style>
 </head>
-<body>
 
+<body>
+	{% if messages %}
+	{% for message in messages%}
+	
+	<div class="modal fade text-center py-5"  id="subscribeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-md" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="top-strip"></div>
+					<a class="h2" href="http://127.0.0.1:8000/" target="_blank">Visit+</a>
+						<p class="pb-1 text-muted">{{message}}</p><br>
+						<a href="http://127.0.0.1:8000/">Home</a>
+					<div class="bottom-strip"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	{% endfor %}
+	{% endif %}
 <div class="container-fluid">
-	<button onclick="topFunction()" id="myBtn2" title="Go to top">Top</button>
+	<button onclick="topFunction()" id="myBtn2" title="Go to top"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
 
 
 	<!-- Home -->
@@ -232,7 +151,7 @@
 										<div class="header_top_nav">
 
 											<ul class="d-flex flex-row align-items-center justify-content-start">
-											<li>Follow us on</li>
+
 
 
 											</ul>
@@ -253,16 +172,16 @@
 										<div class="header_nav_content d-flex flex-row align-items-center justify-content-start">
 											<nav class="main_nav">
 												<ul class="d-flex flex-row align-items-center justify-content-start">
-													<li class="active"><a href="{% url 'searchBarApp:searching' %}">Home</a></li>
-													<li><a href="{% url 'searchBarApp:contact' %}">Contact</a></li>
-													<li><a href="{% url 'searchBarApp:blog' %}">Blog</a></li>
-{#                                                    <li><a href="{% url 'chat:room' %}">Chat</a></li>#}
+													{% block active %}<li class="active"><a  class="cool-link" href="{% url 'searchBarApp:searching' %}">  Home </a></li> {% endblock active %}
+													{%block contact_active%}<li ><a class="cool-link" href="{% url 'searchBarApp:contact' %}">Contact</a></li>{%endblock contact_active%}
+																								<li><a class="cool-link"href="{% url 'blog:blog-home' %}">Blog</a></li>
+																							 <li><a class="cool-link"href="{% url 'chat:index' %}">Chat</a></li>
 													{% if user.is_authenticated %}
-														<li><a href="{% url 'user_logout' %}">Logout</a></li>
-                                                        <li><a href="{% url 'basicapp:profile' %}">{{ user.username }}</a></li>
+														<li><a class="cool-link" href="{% url 'user_logout' %}">Logout</a></li>
+														<li><a href="{% url 'basicapp:profile' %}">{{ user.username }}</a></li>
 													{% else %}
-														<li><a href="{% url 'basicapp:user_login' %}">Login</a></li>
-														<li><a href="{% url 'basicapp:register' %}">SignUp</a></li>
+														{%block login_active%}<li><a class="cool-link" href="{% url 'basicapp:user_login' %}">Login</a></li>{%endblock login_active%}
+														{%block sign_active%}<li><a class="cool-link" href="{% url 'basicapp:register' %}">SignUp</a></li>{%endblock sign_active%}
 													{% endif %}
 												</ul>
 
@@ -270,7 +189,7 @@
 											<div class="search_content d-flex flex-row align-items-center justify-content-end ml-auto">
 												<form  id="search_container_form" class="search_container_form" action="{% url 'searchBarApp:result' %}" method="POST">
 													{% csrf_token %}
-													<select class="category" name="select_type" id="select_type" style="width: 96px; height: 40px">
+													<select class="category" name="select_type" id="select_type" style="width: 110px; height: 45px">
 											<option value="Select" selected>Select one</option>
 												<option value="All">All</option>
 												<option value="Automobiles" >Automobiles</option>
@@ -281,7 +200,7 @@
 												</select>
 
 													<input  class="text" class="search_container_input" name="query" id="query" autocomplete="off" placeholder="Search for ..." size="1">
-													<button  id="myBtn" type="submit" class="btn btn-success" >Search</button>
+													<button  id="myBtn" type="submit" class="btn btn-success">Search</button>
 												</form>
 											</div>
 										</div>
@@ -292,14 +211,15 @@
 					</div>
 				</div>
 			</div>
+			<div id="progress-bar"></div>
+
 		</header>
 												{% block body_block %}
 
-												{%endblock%}
+												{%endblock body_block  %}
+												{% block search %}
+												{% endblock search %}
 	<!-- Footer -->
-
-{#        <button type="button" class="btn btn-success btn-lg" style="background-color:#3385ff;" onclick="location.href='{% url 'final_app:review' %}'" >Reviews and Ratings</button>#}
-
 
 	<footer class="footer" >
 		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="{% static "images/Footer.jpg"%}" data-speed="1"></div>
@@ -321,17 +241,42 @@
 					<!-- Footer Contact -->
 					<div class="col-lg-5 footer_col" style="padding-left:200px">
 						<div class="footer_contact">
-							<div class="footer_contact_title">Subscribe to Our Newsletter</div>
-							<div class="footer_contact_form_container">
-								<form action="#" class="footer_contact_form" id="footer_contact_form">
-									<div class="d-flex flex-xl-row flex-column align-items-center justify-content-between">
-										<input type="email" class="footer_contact_input" placeholder="Enter your E-mail Id" required="required" >
+							<!-- <div class="footer_contact_title">Subscribe to Our Newsletter</div> -->
+							<!-- <button type="button" class="btn btn-success btn-lg" style="background-color:#3385ff;" onclick="location.href='{% url 'newsletters:newsletter_signup' %}'" >Subscribe to Newsletter</button> -->
+							<div class="container">
+								<div class="row">
+									<div class="col-lg-7 col-lg-offset-3">
+										
+										{% if messages %}
+											{% for message in messages%}
+												<div {% if message.tags %}class="{{message.tags}}" {% endif %} role="alert">
+														<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+															{{message}}
+															
+														<a href="http://127.0.0.1:8000/">Go back</a>
+												</div>
+											{% endfor %}
+										{% else %}
+											<form  method="POST">
+												{%csrf_token%}
+												<h4  style="color:green">Subscribe to Visit+ Newsletter</h4>
+												<div class="input-group" >
+
+												<center> {{form_newslet.email}} </center>
+												<span class="input-group-btn">
+													<button class="btn btn-primary" type="submit">Subscribe <i class="fa fa-arrow-right"></i></button>
+												</span>
+												</div>
+											</form>
+
+
+										{% endif %}
 									</div>
-									<button class="footer_contact_button" style="background-color:#3385ff;">Subscribe</button>
-								</form>
+								</div>
 							</div>
 						</div>
 					</div>
+
 
 				</div>
 			</div>
@@ -344,18 +289,18 @@
 						<div class="footer_bar_content d-flex flex-sm-row flex-column align-items-lg-center align-items-start justify-content-start">
 							<nav class="footer_nav">
 								<ul class="d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
-									<li class="active"><a href="{% url 'searchBarApp:searching' %}">Home</a></li>
-									<li><a href="{% url 'searchBarApp:about' %}">About</a></li>
-									<li><a href="{% url 'searchBarApp:services' %}">Services</a></li>
-									<li><a href="{% url 'searchBarApp:blog' %}">blog</a></li>
+									<li class="active"><a class="cool-link" href="{% url 'searchBarApp:searching' %}">Home</a></li>
+									<li ><a class="cool-link" href="{% url 'searchBarApp:about' %}">About</a></li>
+									<li><a class="cool-link" href="{% url 'searchBarApp:services' %}">Services</a></li>
+									<li><a class="cool-link" href="{% url 'searchBarApp:blog' %}">blog</a></li>
 								</ul>
 							</nav>
 							<div class="footer_links" style="padding-left:450px">
 								<ul class="d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
-									<li><a href="{% url 'searchBarApp:contact' %}">Contact Us</a></li>
+									<li><a  href="{% url 'searchBarApp:contact' %}">Contact Us</a></li>
 									<li><a href="https://in.pinterest.com/"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-									<li><a href="https://facebook.com/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-									<li><a href="https://twitter.com/"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+									<li><a href="https://www.facebook.com/Visit-1488925607877844/?modal=admin_todo_tour"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+									<li><a href="https://twitter.com/Visit97965602"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
 										<li><a href="https://instagram.com/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
 									<li><a href="https://linkedin.com/"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
 
@@ -363,6 +308,7 @@
 								</div>
 							</div>
 							</div>
+
 					</div>
 				</div>
 			</div>
@@ -381,6 +327,7 @@
 <script src="{% static "plugins/easing/easing.js" %}"></script>
 <script src="{% static "plugins/parallax-js-master/parallax.min.js" %}"></script>
 <script src="{% static "js/custom.js" %}"></script>
+<script src="{% static "js/jquery-scrollbar.js" %}"></script>
 
 <script>
 
@@ -398,7 +345,9 @@ $(document).ready(function(){
 				 var countries = [{% for obj in objects %} "{{ obj.id_name }}", {% endfor %}];
 					 console.log(" Suggestions for ALL")
 					 console.log(countries)
-					 autocomplete(document.getElementById("query"), countries);
+					 let unique = [...new Set(countries)]
+					 console.log(unique)
+					 autocomplete(document.getElementById("query"), unique);
 
 
 				}
@@ -409,9 +358,12 @@ $(document).ready(function(){
 				 console.log(sel)
 				 var countries = [{% for obj in objects2 %} "{{ obj.id_name }}", {% endfor %}];
 				 console.log(countries)
-				 console.log("Suggestions for Manufacturing")
 
-				 autocomplete(document.getElementById("query"), countries);
+				 console.log("Suggestions for Manufacturing")
+				 let unique = [...new Set(countries)]
+				 console.log(unique)
+
+				 autocomplete(document.getElementById("query"), unique);
 
 				}
 
@@ -422,8 +374,10 @@ $(document).ready(function(){
 				 var countries = [{% for obj in objects5 %} "{{ obj.id_name }}", {% endfor %}];
 				 console.log(countries)
 				 console.log("Suggestions for IT Companies")
+				 let unique = [...new Set(countries)]
+				 console.log(unique)
 
-				 autocomplete(document.getElementById("query"), countries);
+				 autocomplete(document.getElementById("query"), unique);
 
 				}
 
@@ -435,8 +389,10 @@ $(document).ready(function(){
 				 var countries = [{% for obj in objects3 %} "{{ obj.id_name }}", {% endfor %}];
 				 console.log(countries)
 				 console.log("Suggestions for Automobiles")
+				 let unique = [...new Set(countries)]
+				 console.log(unique)
 
-				 autocomplete(document.getElementById("query"), countries);
+				 autocomplete(document.getElementById("query"), unique);
 
 				}
 
@@ -452,8 +408,6 @@ $(document).ready(function(){
 
 				}
 
-
-
 			 else if(selectedcategory =="Assembling")
 				{
 						var sel=50;
@@ -461,15 +415,20 @@ $(document).ready(function(){
 					 var countries = [{% for obj in objects4 %} "{{ obj.id_name }}", {% endfor %}];
 					 console.log(countries)
 					 console.log("Suggestions for Assembling")
+					 let unique = [...new Set(countries)]
+					 console.log(unique)
 
 					 autocomplete(document.getElementById("query"), countries);
 
 					}
 
 
-		});
-});
 
+		});
+
+			$("#progress-bar").onscroll();
+
+});
 
 
 function autocomplete(inp, arr) {
@@ -610,101 +569,16 @@ function topFunction() {
 
 </script>
 
-    <script>
-      // This example requires the Places library. Include the libraries=places
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -33.8688, lng: 151.2195},
-          zoom: 13
-        });
-        var card = document.getElementById('pac-card');
-        var input = document.getElementById('pac-input');
-        var types = document.getElementById('type-selector');
-        var strictBounds = document.getElementById('strict-bounds-selector');
+<script type="text/javascript">
+	$(window).on('load', function() {
+	 setTimeout(function(){
+		 $('#subscribeModal').modal('show');
+	 }, 10);
 
-        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
-
-        var autocomplete = new google.maps.places.Autocomplete(input);
-
-        // Bind the map's bounds (viewport) property to the autocomplete object,
-        // so that the autocomplete requests use the current map bounds for the
-        // bounds option in the request.
-        autocomplete.bindTo('bounds', map);
-
-        // Set the data fields to return when the user selects a place.
-        autocomplete.setFields(
-            ['address_components', 'geometry', 'icon', 'name']);
-
-        var infowindow = new google.maps.InfoWindow();
-        var infowindowContent = document.getElementById('infowindow-content');
-        infowindow.setContent(infowindowContent);
-        var marker = new google.maps.Marker({
-          map: map,
-          anchorPoint: new google.maps.Point(0, -29)
-        });
-
-        autocomplete.addListener('place_changed', function() {
-          infowindow.close();
-          marker.setVisible(false);
-          var place = autocomplete.getPlace();
-          if (!place.geometry) {
-            // User entered the name of a Place that was not suggested and
-            // pressed the Enter key, or the Place Details request failed.
-            window.alert("No details available for input: '" + place.name + "'");
-            return;
-          }
-
-          // If the place has a geometry, then present it on a map.
-          if (place.geometry.viewport) {
-            map.fitBounds(place.geometry.viewport);
-          } else {
-            map.setCenter(place.geometry.location);
-            map.setZoom(17);  // Why 17? Because it looks good.
-          }
-          marker.setPosition(place.geometry.location);
-          marker.setVisible(true);
-
-          var address = '';
-          if (place.address_components) {
-            address = [
-              (place.address_components[0] && place.address_components[0].short_name || ''),
-              (place.address_components[1] && place.address_components[1].short_name || ''),
-              (place.address_components[2] && place.address_components[2].short_name || '')
-            ].join(' ');
-          }
-
-          infowindowContent.children['place-icon'].src = place.icon;
-          infowindowContent.children['place-name'].textContent = place.name;
-          infowindowContent.children['place-address'].textContent = address;
-          infowindow.open(map, marker);
-        });
-
-        // Sets a listener on a radio button to change the filter type on Places
-        // Autocomplete.
-        function setupClickListener(id, types) {
-          var radioButton = document.getElementById(id);
-          radioButton.addEventListener('click', function() {
-            autocomplete.setTypes(types);
-          });
-        }
-
-        setupClickListener('changetype-all', []);
-        setupClickListener('changetype-address', ['address']);
-        setupClickListener('changetype-establishment', ['establishment']);
-        setupClickListener('changetype-geocode', ['geocode']);
-
-        document.getElementById('use-strict-bounds')
-            .addEventListener('click', function() {
-              console.log('Checkbox clicked! New state=' + this.checked);
-              autocomplete.setOptions({strictBounds: this.checked});
-            });
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCe2otGPKiUf4Qq35MmOfDWHaQm-Cjtopw&libraries=places&callback=initMap" async defer></script>
-
-
+	});
+	$('#Reloadpage').click(function() {
+		location.reload();
+	});
 </body>
 </html>

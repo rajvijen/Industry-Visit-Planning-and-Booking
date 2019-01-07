@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+      <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+      <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+      <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+          <link href="https://fonts.googleapis.com/css?family=Oleo+Script:400,700" rel="stylesheet">
+          <link href="https://fonts.googleapis.com/css?family=Teko:400,700" rel="stylesheet">
+          <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+          <link rel="stylesheet" href="{% static "CSS/css1.css" %}">
+
+    </style>
+  </head>
+  <body>
+      <section id="contact">
+      			<div class="section-content">
+      				<h1 class="section-header">Feedback <span class="content-header wow fadeIn " data-wow-delay="0.2s" data-wow-duration="2s"> Help us Improve</span></h1>
+      				<h3>Your Feedback matters a lot</h3>
+      			</div>
+      			<div class="contact-section">
+      			<div class="container">
+      				<form method="POST">
+                {% csrf_token %}
+      					<div class="col-md-6 form-line">
+                  <div style = "font-size:20px;color:black">
+                  User_name:<br><input type="text" value = "{{ name }}" readonly><br>
+                  email:<br><input type="text" value="{{ email }}" readonly>
+                </div>
+                <label for="services">Services:</label>
+                <div class="form-group">
+                  <select class="form-control" name="services" id = "services">
+                    <option value = "Very Good">Very Good</option>
+                    <option value = "Good">Good</option>
+                    <option value = "Satisfactory">Satisfactory</option>
+                    <option value = "Bad">Bad</option>
+                  </select>
+              </div>
+              <label for="guide">Guide:</label>
+              <div class="form-group">
+                <select class="form-control" name="guide" id = "guide">
+                  <option value = "Very Good">Very Good</option>
+                  <option value = "Good">Good</option>
+                  <option value = "Satisfactory">Satisfactory</option>
+                  <option value = "Bad">Bad</option>
+                </select>
+            </div>
+      			</div>
+      			  		<div class="col-md-6">
+                    <label for="query">Querys:</label>
+                    <div class="form-group">
+                      <textarea class="form-control" name="query" rows="5" id="query"></textarea>
+                    </div>
+      			  			<div>
+      			  				<input type="submit" class="btn btn-warning" value="Send Feedback" style="float:right" >
+      			  	</div>
+
+      					</div>
+      				</form>
+      			</div>
+      		</section>
+  </body>
+</html>

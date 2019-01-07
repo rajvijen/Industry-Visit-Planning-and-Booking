@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% extends 'searchBarApp/base.html'%}
+
+{% block body_block %}
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<h1 style="text-align:center">Add To Visit Later</h1><br><br>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-3 ">
+		     <div class="list-group ">
+              <a href="{% url 'basicapp:profile' %}" class="list-group-item list-group-item-action">Profile</a>
+              <a href="{% url 'basicapp:visited_industries' %}" class="list-group-item list-group-item-action">visited Industries</a>
+              <a href="{% url 'basicapp:booked_to_visit' %}" class="list-group-item list-group-item-action">Booked industries to visit</a>
+              <a href="{% url 'basicapp:add_to_visit_later' %}" class="list-group-item list-group-item-action">Visit Later</a>
+              <a href="{% url 'basicapp:update' %}" class="list-group-item list-group-item-action">Update Profile</a>
+            </div>
+		</div>
+		<div class="col-md-9">
+                <table class="table table-striped table-dark">
+                      <thead>
+                        <tr>
+                          <th scope="col">User</th>
+                          <th scope="col">Industry Name</th>
+													<th scope="col">Go to that Industry</th>
+                          <th scope="col">Remove</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for person in add_to_visit_later %}
+                            <tr>
+                              <td>{{ person.user_id }}</td>
+                              <td>{{ person.industry_id }}</td>
+															<td>
+																<button type="button" class="btn btn-success" style="background-color:#3385ff;" onclick="location.href='{% url 'searchBarApp:industry' person.industry_id.id %}'" >Go to that Industry</button>
+                              </td>
+                              <td>
+                                <form action="{% url 'basicapp:cancel_ticket2' person.id %}" method="POST" id="cancel"  onsubmit="return confirm('Do you want to remove from Add To Visit Later');">
+                                    {% csrf_token %}
+                                    <input  class="btn-sm btn-danger"  type="submit"  value="Remove">
+                                </form>
+
+                              </td>
+                            </tr>
+                      {% endfor %}
+                      </tbody>
+                </table>
+    </div>
+</div>
+
+
+    <br><br>
+    <br><br>
+
+
+
+{% endblock %}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% extends 'searchBarApp/base.html'%}
+
+{% block body_block %}
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<h1 style="text-align:center">Booked To Visit</h1><br><br>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-3 ">
+		     <div class="list-group ">
+              <a href="{% url 'basicapp:profile' %}" class="list-group-item list-group-item-action">Profile</a>
+              <a href="{% url 'basicapp:visited_industries' %}" class="list-group-item list-group-item-action">visited Industries</a>
+              <a href="{% url 'basicapp:booked_to_visit' %}" class="list-group-item list-group-item-action">Booked industries to visit</a>
+              <a href="{% url 'basicapp:add_to_visit_later' %}" class="list-group-item list-group-item-action">Visit Later</a>
+              <a href="{% url 'basicapp:update' %}" class="list-group-item list-group-item-action">Update Profile</a>
+            </div>
+		</div>
+		<div class="col-md-9">
+                <table class="table table-striped table-dark">
+                      <thead>
+                        <tr>
+                          <th scope="col">Booked Under</th>
+                          <th scope="col">Email</th>
+                          <th scope="col">Industry Name</th>
+                          <th scope="col">Date of Visit</th>
+                          <th scope="col">Slot No</th>
+                          <th scope="col">No of people to visit</th>
+                          <th scope="col">Cancel Visit</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for person in booked_industries %}
+                        {% if person.date_visit >= date_now %}
+                            <tr>
+                              <td>{{ person.name_person }}</td>
+                              <td>{{ person.email }}</td>
+                              <td>{{ person.industry_name }}</td>
+                              <td>{{ person.date_visit}}</td>
+                              <td>{{ person.slot_time }}</td>
+                              <td>{{ person.visiting_members}}</td>
+                              <td>
+                                  {% if person.left_days_bool %}
+                                      <form action="{% url 'basicapp:cancel_ticket' person.id %}" method="POST" id="cancel"  onsubmit="return confirm('Do you really want to cancel the visit?');">
+                                          {% csrf_token %}
+                                          <input  class="btn-sm btn-danger"  type="submit"  value="Cancel">
+                                      </form>
+                                  {% else %}
+                                    Cannot be Cancelled
+                                  {% endif %}
+
+                              </td>
+                            </tr>
+                        {% endif %}
+                      {% endfor %}
+                      </tbody>
+                </table>
+    </div>
+</div>
+
+
+    <br><br>
+    <br><br>
+
+
+
+{% endblock %}

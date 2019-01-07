@@ -1,5 +1,3 @@
-/* JS Document */
-
 /******************************
 
 [Table of Contents]
@@ -17,7 +15,7 @@ $(document).ready(function()
 {
 	"use strict";
 
-	/* 
+	/*
 
 	1. Vars and Inits
 
@@ -48,7 +46,7 @@ $(document).ready(function()
 	initDeptSlider();
 	initAccordions();
 
-	/* 
+	/*
 
 	2. Set Header
 
@@ -66,7 +64,7 @@ $(document).ready(function()
 		}
 	}
 
-	/* 
+	/*
 
 	3. Init Menu
 
@@ -103,7 +101,7 @@ $(document).ready(function()
 				}
 			});
 
-	
+
 		}
 	}
 
@@ -119,7 +117,7 @@ $(document).ready(function()
 		menuActive = false;
 	}
 
-	/* 
+	/*
 
 	4. Init Dept Slider
 
@@ -159,7 +157,7 @@ $(document).ready(function()
 		}
 	}
 
-	/* 
+	/*
 
 	5. Init Accordions
 
@@ -179,7 +177,7 @@ $(document).ready(function()
 				{
 					var panel = $(acc.next());
 					var panelH = panel.prop('scrollHeight') + "px";
-					
+
 					if(panel.css('max-height') == "0px")
 					{
 						panel.css('max-height', panel.prop('scrollHeight') + "px");
@@ -187,7 +185,7 @@ $(document).ready(function()
 					else
 					{
 						panel.css('max-height', "0px");
-					} 
+					}
 				}
 
 				acc.on('click', function()
@@ -197,7 +195,7 @@ $(document).ready(function()
 						acc.removeClass('active');
 						var panel = $(acc.next());
 						var panelH = panel.prop('scrollHeight') + "px";
-						
+
 						if(panel.css('max-height') == "0px")
 						{
 							panel.css('max-height', panel.prop('scrollHeight') + "px");
@@ -205,14 +203,14 @@ $(document).ready(function()
 						else
 						{
 							panel.css('max-height', "0px");
-						} 
+						}
 					}
 					else
 					{
 						acc.addClass('active');
 						var panel = $(acc.next());
 						var panelH = panel.prop('scrollHeight') + "px";
-						
+
 						if(panel.css('max-height') == "0px")
 						{
 							panel.css('max-height', panel.prop('scrollHeight') + "px");
@@ -220,7 +218,7 @@ $(document).ready(function()
 						else
 						{
 							panel.css('max-height', "0px");
-						} 
+						}
 					}
 				});
 			});

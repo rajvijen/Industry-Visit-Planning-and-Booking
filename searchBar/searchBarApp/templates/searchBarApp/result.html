@@ -1,35 +1,81 @@
 <!DOCTYPE html>
 {% extends 'searchBarApp/base.html'%}
-
+{% load crispy_forms_tags %}
 {% load staticfiles %}
 
+{% block title %} {{instance.id_name}} {% endblock title %}
+
 {% block body_block %}
+<head>
+  <title>Find the industry</title>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <style>
+  #map {
+    height: 100%;
+  }
+  /* Optional: Makes the sample page fill the window. */
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  #floating-panel {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: 'Roboto','sans-serif';
+    line-height: 30px;
+    padding-left: 10px;
+  }
+  #floating-panel {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    margin-left: -180px;
+    width: 350px;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+  }
+  #latlng {
+    width: 225px;
+
+  }
+
+  </style>
+</head>
+
+<link rel="stylesheet" type="text/css" href="{% static 'styles/result.css'%}">
 
 <div class="home">
     		<div class="background_image" style="background-image:url(/media/{{instance.image}})"></div>
-
         <div class="home_container">
             			<div class="container">
             				<div class="row">
             					<div class="col">
             						<div class="home_content">
-            							<div class="home_title" style="color: black">{{instance.id_name}}</div>
-            							<div class="home_text" style="color: black">Explore the joy of visiting companies that you love </div>
-{#            							<div class="button home_button" style="background-color:#3385ff;"><a href="#"><span>read more</span><span>read whole</span></a></div>#}
+            							<div class="home_title">{{instance.id_name}}</div>
+            							<div class="home_text">Explore the joy of visiting companies that you love </div>
+            							
             						</div>
             					</div>
             				</div>
             			</div>
             		</div>
             	</div>
-             <br><br><br>
-
-
-
         		</div>
         	</div>
-    <br><br><br>
-           <div class="col-lg-7" style="float: left;">
+          <br><br><br>
+          <div class="container">
+            <div class="row">
+           <div class="col-lg-7">
             <div class="faq" >
               <div class="faq_title">Details about {{instance.id_name}}</div>
               <div class="faq_subtitle">Get to know about {{instance.id_name}}</div>
@@ -37,7 +83,7 @@
                 <div class="accordions" >
 
                   <div class="accordion_container" >
-                    <div class="accordion d-flex flex-row align-items-center active" style="width:50%"><div> Date Established </div></div>
+                    <div class="accordion d-flex flex-row align-items-center active" style="width:80%"><div> Date Established </div></div>
                     <div class="accordion_panel" >
                       <div>
                         <p>{{instance.date}}</p>
@@ -46,7 +92,7 @@
                   </div>
 
                   <div class="accordion_container">
-                    <div class="accordion d-flex flex-row align-items-center" style="width:50%"><div>Location</div></div>
+                    <div class="accordion d-flex flex-row align-items-center" style="width:80%"><div>Location</div></div>
                     <div class="accordion_panel">
                       <div>
                         <p>{{instance.location}}</p>
@@ -55,10 +101,10 @@
                   </div>
 
                   <div class="accordion_container">
-                    <div class="accordion d-flex flex-row align-items-center" ><div>Category</div></div>
+                    <div class="accordion d-flex flex-row align-items-center" style="width:80%"><div>Category</div></div>
                     <div class="accordion_panel">
                       <div>
-                        <p>{{instance.category}}</p>
+                        <p>{{instance.details}}</p>
                       </div>
                     </div>
                   </div>
@@ -67,44 +113,63 @@
             </div>
           </div>
 
-    <div class="pac-card" id="pac-card" style="height: 400px;width:450px;float: left">
-      <div>
-        <div id="title">
-          Search for industry location
+          <div class="col-lg-5">
+              <input id="latlng" type="text" value="{{instance.location}}" >
+              <input id="submit" type="button" value="Find" class="btn btn-success btn-lg">
+            <div id="map"></div>
+            </div>
+          </div>
         </div>
-        <div id="type-selector" class="pac-controls">
-          <input type="radio" name="type" id="changetype-all" checked="checked">
-          <label for="changetype-all">All</label>
+        <script>
+          function initMap() {
+            var temp=document.getElementById('latlng').value;
+            var split_string=temp.split(",");
 
-          <input type="radio" name="type" id="changetype-establishment">
-          <label for="changetype-establishment">Establishments</label>
+            var latlong_dict={lat:parseFloat(split_string[0]),lng:parseFloat(split_string[1])}
 
-          <input type="radio" name="type" id="changetype-address">
-          <label for="changetype-address">Addresses</label>
+            var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 8,
+              //center: {lat: 40.731, lng: -73.997}
+              center: latlong_dict,
+            });
+            var marker = new google.maps.Marker({position:latlong_dict,map:map});
+            var geocoder = new google.maps.Geocoder;
+            var infowindow = new google.maps.InfoWindow;
 
-          <input type="radio" name="type" id="changetype-geocode">
-          <label for="changetype-geocode">Geocodes</label>
-        </div>
-        <div id="strict-bounds-selector" class="pac-controls">
-          <input type="checkbox" id="use-strict-bounds" value="">
-          <label for="use-strict-bounds">Strict Bounds</label>
-        </div>
-      </div>
-      <div id="pac-container">
-        <input id="pac-input" type="text"
-            placeholder="Enter a location">
-      </div>
-    </div>
-    <div id="map"></div>
-    <div id="infowindow-content">
-      <img src="" width="16" height="16" id="place-icon">
-      <span id="place-name"  class="title"></span><br>
-      <span id="place-address"></span>
-    </div>
+            document.getElementById('submit').addEventListener('click', function() {
+              geocodeLatLng(geocoder, map, infowindow);
+            });
+          }
 
+          function geocodeLatLng(geocoder, map, infowindow) {
+            var input = document.getElementById('latlng').value;
+            var latlngStr = input.split(',', 2);
+            var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+            geocoder.geocode({'location': latlng}, function(results, status) {
+              if (status === 'OK') {
+                if (results[0]) {
+                  map.setZoom(11);
+                  var marker = new google.maps.Marker({
+                    position: latlng,
+                    map: map
+                  });
+                  infowindow.setContent(results[0].formatted_address);
+                  infowindow.open(map, marker);
+                } else {
+                  window.alert('No results found');
+                }
+              } else {
+                window.alert('Geocoder failed due to: ' + status);
+              }
+            });
+          }
+        </script>
 
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCe2otGPKiUf4Qq35MmOfDWHaQm-Cjtopw&callback=initMap">
+        </script>
 
+        <br><br>
                      <div class="container">
                        <div class="row">
                          <div class="col-md-12">
@@ -112,20 +177,183 @@
                            {{instance.About}}<br>
                          </div>
                        </div><br>
-                       </div>
+                     </div><br><br><br>
                      <div class="container">
                        <div class="row">
                          <div class="col-md-12">
-                           <button type="button" class="btn btn-success btn-lg" style="background-color:#3385ff;" onclick="location.href='{% url 'booking:con_indi' %}'" >Schedule Individual Visit</button>
-                           <button type="button" class="btn btn-success btn-lg" style="background-color:#3385ff;" onclick="location.href='{% url 'booking:con_orga' %}'" >Schedule Organisation Visit</button>
+                           <button type="button" class="btn btn-success btn-lg" style="background-color:#3385ff;" onclick="location.href='{% url 'basicapp:booking_charge' instance.id %}'" >Schedule Visit</button>
+                       {% if user.is_authenticated %}
+                       {% if ind_status %}
+                            <button type="button" class="btn btn-success btn-lg" style="background-color:#3385ff;" onclick="location.href='{% url 'searchBarApp:add_to_visit_later' instance.id %}'" >Add To Visit Later</button>
+                            {% else %}
+                            <button type="button" class="btn btn-success btn-lg" style="background-color:#3385ff;" onclick="location.href='{% url 'basicapp:add_to_visit_later'%}'" >Already Added</button>
+                          {% endif %}
+                           <!-- <form action="{% url 'searchBarApp:add_to_visit_later' instance.id %}"  method="POST">
+                             {%csrf_token%}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                              <input type="submit" value="Add To Visit Later">
+                           </form> -->
+                       {% else %}
+                           <div class="container">
+                             <div class="row">
+                               <div class="col-md-12">
+                      
+                                <button type="'button'" class="btn btn-success" > <a href="http://127.0.0.1:8000/basicapp/user_login/">Add to visit later</a></button>
+                               </div>
+                             </div>
+                           </div>
+                       {% endif %}
                          </div>
                        </div>
                      </div>
 
-                     <br><br>
 
 
+                     <br>
+                     <br>
+                     <hr>
+<!--Reviews Part-->
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                      <strong style="color: blue;font-size: xx-large" > USERS COMMENTS</strong></div>
+                  </div>
+                </div>
+              </div>
+                <br>
+              {% if no_r > 0 %}
+                 {% for rev in reviews %}
+                    <div class="container">
+                        <div class="row">
+                          <div class="col-md-12">
+                              <li><strong style="color: #3385ff">User Name:</strong><strong style="color:black">&nbsp;&nbsp;&nbsp;{{ rev.user_name }}</strong></li>
+                              <li><strong style="color: #3385ff">Comment:</strong><strong style="color:black">&nbsp;&nbsp;&nbsp;&nbsp;{{ rev.comment }}</strong></li>
+                              <li><strong style="color: #3385ff">Rating:</strong><strong style="color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ rev.rating }}</strong></li>
+                              <br><br>
+                          </div>
+                        </div>
+                    </div>
+                 {% endfor %}
+              {% else%}
+                <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                      <strong style="color: #3385ff;font-size: x-large">Be the first one to write!!</strong>
+                  </div>
+                </div>
+              </div>
+                 <br>
+              {% endif %}
+              {% if user.is_authenticated %}
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <form action="{% url 'searchBarApp:AddReview' %}" method="POST">
+                      {% csrf_token %}
+                      <input type="hidden" readonly name="ind" value="{{ instance.id_name }}"><br>
+                      <input type="" name="comment" value="" placeholder="Write a review"><br>
+                        <div class="star-rating">
+                       <input id="star-5" type="radio" name="rating" value="5">
+                       <label for="star-5" title="5 stars">
+                   <i class="active fa fa-star" aria-hidden="true"></i>
+                       </label>
+                       <input id="star-4" type="radio" name="rating" value="4">
+                       <label for="star-4" title="4 stars">
+                   <i class="active fa fa-star" aria-hidden="true"></i>
+                       </label>
+                       <input id="star-3" type="radio" name="rating" value="3">
+                       <label for="star-3" title="3 stars">
+                   <i class="active fa fa-star" aria-hidden="true"></i>
+                       </label>
+                       <input id="star-2" type="radio" name="rating" value="2">
+                       <label for="star-2" title="2 stars">
+                   <i class="active fa fa-star" aria-hidden="true"></i>
+                       </label>
+                       <input id="star-1" type="radio" name="rating" value="1">
+                       <label for="star-1" title="1 star">
+                   <i class="active fa fa-star" aria-hidden="true"></i>
+                           </label>
+                        </div><br>
+                     <button type="submit" class="btn btn-success btn-lg" name='submit-review' style="background-color:#3385ff;" >Submit</button><br><br><br>
 
+                   </form>
+                  </div>
+                </div>
+              </div>
+              {% else %}
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <button type="'button'" class="btn btn-success"><a href="http://127.0.0.1:8000/basicapp/user_login/"> write a review</a></button>
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+
+<!--End of reviews part-->
+
+
+<div class="departments">
+  <div class="container">
+    <div class="row">
+      <div class="col text-center">
+        <div class="section_title">SIMILAR INDUSTRIES</div>
+        <div class="section_subtitle">YOU MAY LIKE </div>
+      </div>
+    </div>
+    <div class="row dept_row">
+      <div class="col">
+        <div class="dept_slider_container_outer">
+          <div class="dept_slider_container">
+ 
+            <!-- Slider -->
+            <div class="owl-carousel owl-theme dept_slider">
+
+              {% for k in category_industries %}
+                {% if k.location != instance.location %}  
+                  <div class="owl-item dept_item">
+                    <div class="dept_image"><img src="/media/{{k.image}}" alt="" height="250px" width="250px"></div>
+                    <div class="dept_content">
+                      <div class="dept_title">{{k.id_name}}</div>
+                      <p>{{k.location}}</p>
+                      <div class="dept_link"><a href="{% url 'searchBarApp:industry' k.id %}" >Read More</a></div>
+                    </div>
+                  </div>
+                {% endif %}  
+              {% endfor %}
+              <!-- Slide -->
+              
+ 
+            </div>
+ 
+          </div>
+ 
+          <!-- Dept Slider Nav -->
+          <div class="dept_slider_nav" style="background-color:#3385ff;"><i class="fa fa-chevron-right" aria-hidden="true"></i></div>
+ 
+        </div>
+ 
+      </div>
+    </div>
+  </div>
+ </div>
+ 
+
+                 
+<div id="social-platforms">
+{{id_name}}
+<h1>Share this company with friends</h1>
+
+<a class="btn btn-icon btn-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000/search/search/{{instance.id}}"  title="Share on facebook"><i class="fa fa-facebook"></i><span>Facebook</span></a>
+<a class="btn btn-icon btn-twitter" href="https://twitter.com/home?status=sumanth@sumanth_1974 http://127.0.0.1:8000/search/search/{{instance.id}}" title="Share on twitter"><i class="fa fa-twitter"></i><span>Twitter</span></a>
+<a class="btn btn-icon btn-googleplus" href="https://plus.google.com/share?url=http://127.0.0.1:8000/search/search/{{instance.id}}"><i class="fa fa-google-plus" title="Share on Google+"></i><span>Google+</span></a>
+<a href="mailto:?subject= I suggest you to check out this company&amp;body=Check out this industry http://127.0.0.1:8000/search/search/{{instance.id}}"
+   title="Share by Email"><img src="http://png-2.findicons.com/files/icons/573/must_have/48/mail.png"></a>
+<a class="btn btn-icon btn-linkedin" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://127.0.0.1:8000/search/search/{{instance.id}}" target="_blank"><i class="fa fa-linkedin" title="Share on LinkedIn"></i><span>LinkedIn</span></a>
+
+
+</div>
+
+<br><br><br>
 
              <br><br><br>
 

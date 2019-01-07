@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container width-50" style="width:40%">
+    <h3>Hi, {{ list.name_person }}</h3>
+    <h5>Change your form here</h5>
+    <form method="POST" action="{% url 'booking:update_orga' id %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" name="name_person" value="{{ list.name_person }}">
+        </div>
+        <div class="form-group">
+            <label>Organisation Name</label>
+            <input type="text" class="form-control" name="organisation_name" value="{{ list.organisation_name }}">
+        </div>
+        <div class="form-group">
+            <label>Industry Name</label>
+            <input type="text" class="form-control" name="industry_name" value="{{ list.industry_name }}">
+        </div>
+        <div class="form-group">
+            <label>Date Of Visit</label>
+            <input type="date" class="form-control" name="date_visit" value="{{ list.date_visit }}">
+        </div>
+        <div class="form-group">
+            <label>Slot Time</label>
+            <input type="number" class="form-control" name="slot_time" value="{{ list.slot_time }}">
+        </div>
+        <div class="form-group">
+            <label>Visiting Members</label>
+            <input type="number" class="form-control" name="visiting_members" value="{{ list.visiting_members }}">
+        </div>
+        <div class="form-group">
+            <label>Street Name</label>
+            <input type="text" class="form-control" name="street_name" value="{{ list.street_name }}">
+        </div>
+        <div class="form-group">
+            <label>City Name</label>
+            <input type="text" class="form-control" name="city_name" value="{{ list.city_name }}">
+        </div>
+        <div class="form-group">
+            <label>Pincode</label>
+            <input type="text" class="form-control" name="pin_code" value="{{ list.pin_code }}">
+        </div>
+        <input type="submit" value="Edit Now" class="btn btn-primary">
+    </form>
+    </div>
+</body>
+</html>

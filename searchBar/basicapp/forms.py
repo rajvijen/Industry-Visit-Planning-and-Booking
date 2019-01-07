@@ -6,6 +6,7 @@ from django.core.exceptions import ValidationError
 class UserForm(forms.ModelForm):
     password=forms.CharField(widget=forms.PasswordInput())
     username=forms.CharField(max_length=120)
+    email=forms.EmailField(max_length=120)
     class Meta():
         model=User
         fields=("username","email","password")
@@ -16,11 +17,11 @@ class UserForm(forms.ModelForm):
             raise forms.ValidationError('Username already exists')
         return usname
 
-    def clean_email(self):
-        emil=self.cleaned_data.get('email')
-        if emil and User.objects.filter(email=emil).exists():
-            raise forms.ValidationError('Email already exists')
-        return emil
+    # def clean_email(self):
+    #     emil=self.cleaned_data.get('email')
+    #     if emil and User.objects.filter(email=emil).exists():
+    #         raise forms.ValidationError('Email already exists')
+    #     return emil
 
 
 
@@ -51,4 +52,4 @@ class UpdateUser(forms.ModelForm):
 class UpdateProfile(forms.ModelForm):
     class Meta():
         model = UserProfileInfo
-        fields = ("name", "gender")
+        fields = ("name", "gender",'image')

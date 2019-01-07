@@ -5,14 +5,13 @@
 <head>
     <style>
         body, html {
-            height: 500px;
+            height:500px;
         }
         .p-lax{
             background-image:url('{{ static }}/../static/images/booking_back2.jpg');
             height: 500px;
             background-repeat: no-repeat;
             background-attachment: fixed;
-
         }
     </style>
     <meta charset="UTF-8">
@@ -37,13 +36,30 @@
             <img src="{% static 'images/scroll_down.png' %}" alt="Scrolldown"  style="padding: 200px" height="330">
         </span>{% endcomment %}
     </div>
-    <div class="container width-50" style="width:40%" id="sec02">
+    <center>
+    <div class="container width-50" style="width:40%; text-align: left" id="sec02">
     <b><h2> Please Fill out the form for Booking </h2></b><br>
-    <form action="{% url 'booking:con_orga' %}" method="POST" >
+    <form action="{% url 'booking:con_orga' ind_id %}" method="POST" >
         {% csrf_token %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
         <h4>{{ form|crispy }}</h4><br>
+        <h5><div class="form-group">
+            <h4><label >Mode of transport</label></h4>
+            <input type="radio" name="transport" value="bus" checked>Bus<br>
+            <input type="radio" name="transport" value="train">Train<br>
+            <input type="radio" name="transport" value="plane">Airplane<br>
+            <input type="radio" name="transport" value="none">Feel free to choose this if you don't need any
+        </div></h5><br>
         <input type="submit" value="Book Now" class="btn btn-success pull-right">
     </form>
     </div>
+</center>
 </body>
 </html>

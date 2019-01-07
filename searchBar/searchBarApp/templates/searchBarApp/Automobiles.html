@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% extends 'searchBarApp/base.html'%}
+{% block title %} Automobiles {% endblock %}
 
 {%block body_block%}
 <br><br><br><br><br><br><br><br>
@@ -28,7 +29,8 @@
     <img class="card-img-top" src="/media/{{obj.image}}" style="height:300px" alt="Card image" >
     <div class="card-body">
       <h4 class="card-title">{{obj.id_name}}</h4>
-      <a href="#" class="btn btn-primary">See More</a>
+      <h6 class="card-title">{{obj.location}}</h6>
+      <a href="http://127.0.0.1:8000/search/search/{{obj.id}}" class="btn btn-primary">See More</a>
     </div>
 </div>
 </div>

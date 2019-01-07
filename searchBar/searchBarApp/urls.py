@@ -4,10 +4,12 @@ from django.views.static import serve
 from searchBarApp import views
 from django.conf.urls.static import static
 
+
 app_name="searchBarApp"
 urlpatterns = [
     path('searching/', views.index,name="searching"),
-    path('searching/result', views.result, name="result"),
+    path('searching/result/', views.result, name="result"),
+    path('search/<ind_id>', views.showIndustry, name="industry"),
     path('Assembling',views.Assembling,name="Assembling"),
     path('Automobiles',views.Automobiles,name="Automobiles"),
     path('Manufacturing',views.Manufacturing,name="Manufacturing"),
@@ -19,4 +21,7 @@ urlpatterns = [
     path('services',views.services,name="services"),
     path('read',views.read,name="read"),
     path('base',views.base,name="base"),
+    path('newsletter',views.users,name="users"),
+    path('review',views.AddReview,name="AddReview"),
+    path('add_to_visit_later/<ind_id>',views.addToVisitLater,name="add_to_visit_later"),
 ]

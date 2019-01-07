@@ -5,7 +5,7 @@ import datetime
 class PostForm1(forms.ModelForm):
     class Meta:
         model = BookingListIndi
-        exclude = ('code', 'visited', 'total_available', 'total_taken','user1')
+        exclude = ('code', 'visited', 'total_available', 'total_taken','user1','left_days_bool','industry_name','industry_branch')
 
     def clean(self):
         all_clean_data = super().clean()
@@ -22,7 +22,8 @@ class PostForm1(forms.ModelForm):
             self.add_error('date_visit', "You need to book before 5 days")
         if num_visit <= 0:
             self.add_error('visiting_members', 'Please enter a positive number')
-
+        if num_visit > 5:
+            self.add_error('visiting_members', 'A maximum of 5 members can use this.')
         num = 0
         slot = all_clean_data['slot_time']
         date_format_1 = "%Y-%m-%d"
@@ -38,7 +39,7 @@ class PostForm1(forms.ModelForm):
 class PostForm2(forms.ModelForm):
     class Meta:
         model = BookingListOrga
-        exclude = ('code', 'visited', 'total_available', 'total_taken','user1')
+        exclude = ('code', 'visited', 'total_available', 'total_taken','user1','left_days_bool','industry_name','industry_branch')
 
     def clean(self):
         all_clean_data = super().clean()
@@ -55,7 +56,8 @@ class PostForm2(forms.ModelForm):
             self.add_error('date_visit', "You need to book before 5 days")
         if num_visit <= 0:
             self.add_error('visiting_members', 'Please enter a positive number')
-
+        if num_visit > 15:
+            self.add_error('visiting_members', 'Maximum of 15 members can avail this.')
         num = 0
         slot = all_clean_data['slot_time']
         date_format_1 = "%Y-%m-%d"

@@ -1,0 +1,6 @@
+{% block html %}
+<center>
+Please click the below link to give feedback about your visit.<br>
+{{ link }}
+</center>
+{% endblock %}

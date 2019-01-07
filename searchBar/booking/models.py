@@ -7,6 +7,7 @@ class BookingListIndi(models.Model):
     user1=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     name_person = models.CharField(max_length=200)
     industry_name = models.CharField(max_length=100)
+    industry_branch=models.CharField(max_length=100,null=True)
     email=models.EmailField(null=True)
     date_visit = models.DateField(default=timezone.now)
     slot_time = models.CharField(max_length=10, choices=timings, default='9:30')
@@ -18,6 +19,7 @@ class BookingListIndi(models.Model):
     pin_code = models.CharField(max_length=10)
     code = models.CharField(max_length=20)
     visited = models.BooleanField(default=False)
+    left_days_bool = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name_person
@@ -27,6 +29,7 @@ class BookingListOrga (models.Model):
     name_person = models.CharField(max_length=200)
     organisation_name = models.CharField(max_length=200)
     industry_name = models.CharField(max_length=100)
+    industry_branch=models.CharField(max_length=100,null=True)
     email = models.EmailField(null=True)
     date_visit = models.DateField(default=timezone.now)
     slot_time = models.CharField(max_length=10, choices=timings, default='9:30')

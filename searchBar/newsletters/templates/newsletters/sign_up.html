@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% extends "searchBarApp/base.html" %}<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<html lang="en" dir="ltr">
+  <head>
+{%block body_block%}
+<br><br><br><br><br><br><br><br><br>
+    <meta charset="utf-8">
+    <title>Subscribe</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7 col-lg-offset-3">
+          <h1 class="text-center">Subscribe to Visit+ Newsletter</h1>
+          {% if messages %}
+            {% for message in messages%}
+              <div {% if message.tags %}class="{{message.tags}}" {% endif %} role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{message}}
+                  <a href="http://127.0.0.1:8000/newsletter/sign_up/">Go back</a>
+              </div>
+            {% endfor %}
+          {% else %}
+            <form  method="POST">
+              {%csrf_token%}
+
+              <div class="input-group" >
+              <center> {{ form}} </center>
+              <span class="input-group-btn">
+                <button class="btn btn-danger" type="submit">Subscribe</button>
+
+              </span>
+              </div>
+            </form>
+          
+
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  <br><br><br><br><br><br><br><br><br>
+  </head>
+  {%endblock%}
+
+  <body>
+
+  </body>
+</html>

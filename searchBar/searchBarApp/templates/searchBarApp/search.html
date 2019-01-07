@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+{% extends 'searchBarApp/base.html' %}
+
+{% block title %} {{industry.id_name}} {% endblock title %}
+{% block active %}<li ><a  class="cool-link" href="{% url 'searchBarApp:searching' %}">  Home </a></li> {% endblock active %}
+
+
+{% block search %}
+<br><br><br><br><br>
+<br><br><br><br><br>
+<style >
+
+i {  vertical-align: middle; }
+.table-users tbody tr:hover {
+	cursor: pointer;
+	background-color: #eee;
+}
+.nav-user-photo {
+     vertical-align: middle;
+}
+.user_panel {
+    width: 50%;
+}
+
+th, td ,tr{
+  padding: 150px;
+}
+
+</style>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<script src="https://use.fontawesome.com/1e803d693b.js"></script>
+
+{% if key%}
+<div class="container">
+	<div class="row" >
+        <div class="panel panel-primary ">
+            <div class="panel-heading">
+                <h3 class="panel-title">Results</h3>
+            </div>
+            <div class="panel-body">
+				<div class="table-container" >
+                    <table class="table table-striped" border="0" cellpadding="20" id="example" >
+                      <tr>
+                        <th ><h2 color=green></h2></th>
+                        <th><h2>Name</h2></th>
+                        <th><h2>Location</h2></th>
+                        <th><h2>Established</h2></th>
+                      </tr>
+
+                        <tbody>
+                          {% for instance in instances %}
+                            <tr class='clickable-row' data-href='url://www.google.com'>
+                                <td style="padding:0 15px 0 15px;">
+                                  <center>
+                                    <img class="pull-left img-square nav-user-photo" width="250" src="/media/{{instance.image}}" alt="No preview Image Found" />  
+                                  </center>
+                                </td>
+
+                                <td style="padding:0 15px 0 15px;">
+                                  <center>
+                                    <h4>
+                                      <a href="{% url 'searchBarApp:industry' instance.id %}" style="text-decoration:none;color:black;">
+                                        {{ instance.id_name }}<br>
+                                      </a>
+                                    </h4>
+                                  </center>
+                                </td>
+
+                                <td style="padding:0 15px 0 15px;">
+                                  <h4>
+                                    {{ instance.location }}
+                                  </h4>
+                                </td>
+
+                                <td style="padding:0 25px 0 15px;">
+                                  <h4>
+                                    {{ instance.date }}
+                                  </h4>
+                                </td>
+                            </tr>
+                          {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+	</div>
+</div>
+{% else %}
+<h1>No industry found</h1>
+<img src="http://exmouthyachtclub.org.au/wp-content/uploads/2015/11/sorry-no-data.png" alt="">
+
+{% endif %}
+
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+
+      $('#example tr').click(function() {
+          var href = $(this).find("a").attr("href");
+          if(href) {
+              window.location = href;
+          }
+      });
+
+  });
+
+</script>
+{% endblock search %}
