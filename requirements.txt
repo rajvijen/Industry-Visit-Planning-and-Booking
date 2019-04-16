@@ -52,10 +52,6 @@ future==0.17.1
 geojson==2.4.1
 google-api-core==1.7.0
 google-auth==1.6.2
-google-cloud-core==0.29.1
-google-cloud-firestore==0.31.0
-google-cloud-storage==1.13.2
-google-resumable-media==0.3.2
 googleapis-common-protos==1.5.5
 hiredis==0.3.1
 html5lib==1.0.1
@@ -69,7 +65,7 @@ ipywidgets==7.4.2
 isort==4.3.4
 itsdangerous==1.1.0
 jedi==0.13.2
-Jinja2==2.10
+Jinja2>=2.10.1
 jsonschema==2.6.0
 jupyter-client==5.2.4
 jupyter-core==4.4.0
