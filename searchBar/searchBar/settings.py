@@ -13,9 +13,9 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS=True
 EMAIL_HOST='smtp.gmail.com'
-EMAIL_HOST_USER='djangoproject2699@gmail.com'
-EMAIL_HOST_PASSWORD='djangopassword'
-EMAIL_PORT=587
+EMAIL_HOST_USER='EMAIL_HOST_USER'
+EMAIL_HOST_PASSWORD='EMAIL_HOST_PASSWORD'
+EMAIL_PORT = 'EMAIL_PORT'
 
 
 
@@ -81,7 +81,7 @@ MESSAGE_TYPES_LIST = [
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '9!m3*pd#_23h!te0d*j--cdj6eer#c#+ggozaqzfj7(#gje@8t'
+SECRET_KEY ='SECRET_KEY'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -229,5 +229,5 @@ LOGIN_URL='/basicapp/user_login'
 
 #STRIPE _API_KEYS
 
-STRIPE_PUBLISHABLE_KEY='pk_test_s0xcSPAlotqASga7J3N3AGkI'
-STRIPE_SECRET_KEY='sk_test_3wZHZ2kw46iKQrgYByXrxgME'
+STRIPE_PUBLISHABLE_KEY='STRIPE_PUBLISHABLE_KEY'
+STRIPE_SECRET_KEY='STRIPE_SECRET_KEY'
