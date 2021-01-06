@@ -16,7 +16,7 @@ bleach==3.0.2
 CacheControl==0.12.5
 cachetools==3.0.0
 cairocffi==0.9.0
-CairoSVG==2.2.1
+CairoSVG==2.5.1
 calysto==1.0.6
 celery==4.2.1
 certifi==2018.11.29
