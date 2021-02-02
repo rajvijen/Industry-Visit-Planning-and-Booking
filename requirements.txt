@@ -12,7 +12,7 @@ autobahn==18.12.1
 Automat==0.7.0
 backcall==0.1.0
 billiard==3.5.0.5
-bleach==3.0.2
+bleach==3.3.0
 CacheControl==0.12.5
 cachetools==3.0.0
 cairocffi==0.9.0
