@@ -47,7 +47,7 @@ entrypoints==0.2.3
 Faker==1.0.1
 firebase-admin==2.14.0
 Flask==1.0.2
-Flask-Cors==3.0.7
+Flask-Cors==3.0.9
 future==0.17.1
 geojson==2.4.1
 google-api-core==1.7.0
